@@ -1,0 +1,8 @@
+bs4
+linkedin_jobs_scraper
+pendulum
+requests
+selenium
+tqdm
+
+git+git://github.com/lyeith/pygadgets-core@master
