@@ -105,6 +105,17 @@ def scrape_linkedin(**kwargs):
 def parse_args(argv):
     parser = argparse.ArgumentParser()
 
+    # Non-optional
+    parser.add_argument('--scraper', required=True)
+    parser.add_argument('--query', required=True)
+    parser.add_argument('--schema', required=True)
+    parser.add_argument('--table', required=True)
+
+    # General Arguments
+    parser.add_argument('--listing_age')
+    parser.add_argument('--location')  # Linkedin and Indeed
+    parser.add_argument('--limit')
+
     # MyCareersFuture Specific
     parser.add_argument('--employment_type')
     parser.add_argument('--posting_company')
@@ -119,21 +130,10 @@ def parse_args(argv):
     parser.add_argument('--relevance')
     parser.add_argument('--job_type')
 
-    # General Arguments
-    parser.add_argument('--listing_age')
-    parser.add_argument('--location')  # Linkedin and Indeed
-    parser.add_argument('--limit')
-
-    # Non-optional
-    parser.add_argument('--scraper', required=True)
-    parser.add_argument('--query', required=True)
-    parser.add_argument('--schema', required=True)
-    parser.add_argument('--table', required=True)
-
     args = parser.parse_args(argv).__dict__
 
-    args['limit'] = int(args['limit']) if 'limit' in args else None
-    args['listing_age'] = int(args['listing_age']) if 'listing_age' in args else None
+    args['limit'] = int(args['limit']) if args.get('limit') is not None else None
+    args['listing_age'] = int(args['listing_age']) if args.get('listing_age') is not None else None
     return {k: v for k, v in args.items() if v is not None}
 
 
