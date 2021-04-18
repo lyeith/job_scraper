@@ -93,6 +93,7 @@ class Scraper:
                 post_date = pendulum.parse(self.driver.find_element_by_id('last_posted_date').text.replace('Posted ', ''),
                                            strict=False)
                 if post_date < posted_after:
+                    logging.info(f'Post Date: {post_date} is earlier than Posted After {posted_after}. Ending Loop')
                     continue_running = False
                     break
 
@@ -122,8 +123,10 @@ class Scraper:
                 self.driver.back()
 
             try:
+                WebDriverWait(self.driver, 20).until(EC.presence_of_element_located((By.ID, 'job-card-0')))
                 self.driver.find_element_by_xpath("//span[@data-cy='pagination__next']").click()
-            except:
+            except Exception as e:
+                logging.info('No more pages. Ending loop.')
                 break
 
         pbar.close()
