@@ -59,7 +59,8 @@ def scrape(query: str,
            job_type: list = None,
            experience: list = None,
            locations: list = ['Singapore'],
-           limit: int = None):
+           limit: int = None,
+           **kwargs):
 
     """
     :param query: str

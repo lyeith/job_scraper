@@ -28,7 +28,8 @@ class Scraper:
                posting_company: str = None,
                sort_by: str = 'new_posting_date',
                salary: str = None,
-               listing_age: int = None):
+               listing_age: int = None,
+               **kwargs):
         """
         :param query:
             Your Search Term

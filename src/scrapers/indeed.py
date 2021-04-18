@@ -21,7 +21,7 @@ class Scraper:
     """JobsScraper is a simple job postings scraper for Indeed."""
 
     def __init__(self, country: str, query: str, location: str, limit: int, max_delay: int = 0,
-                 listing_age: int = None):
+                 listing_age: int = None, **kwargs):
         """
         Create a JobsScraper object.
         Parameters
