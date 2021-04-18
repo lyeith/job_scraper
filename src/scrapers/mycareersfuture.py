@@ -92,7 +92,7 @@ class Scraper:
 
                 post_date = pendulum.parse(self.driver.find_element_by_id('last_posted_date').text.replace('Posted ', ''),
                                            strict=False)
-                if post_date < posted_after:
+                if posted_after is not None and post_date < posted_after:
                     logging.info(f'Post Date: {post_date} is earlier than Posted After {posted_after}. Ending Loop')
                     continue_running = False
                     break
