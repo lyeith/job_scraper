@@ -145,7 +145,10 @@ class Scraper:
             if txt is None:
                 return None, None
 
-            if 'a month' in txt:
+            if 'a day' in txt:
+                res = txt.replace('$', '').replace(',', '').replace(' a day', '').split(' - ')
+                divisor = .033
+            elif 'a month' in txt:
                 res = txt.replace('$', '').replace(',', '').replace(' a month', '').split(' - ')
                 divisor = 1
             elif 'a year' in txt:
