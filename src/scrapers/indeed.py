@@ -10,6 +10,7 @@ from time import sleep
 from bs4 import BeautifulSoup
 from tqdm.auto import tqdm
 
+import logging
 import requests
 import random
 import urllib
@@ -150,6 +151,9 @@ class Scraper:
             elif 'a year' in txt:
                 res = txt.replace('$', '').replace(',', '').replace(' a year', '').split(' - ')
                 divisor = 12
+            else:
+                logging.info(f'Salary field was {txt}')
+                return None, None
 
             if len(res) == 1:
                 return None, int(res[0]) / divisor
